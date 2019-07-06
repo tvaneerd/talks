@@ -1,0 +1,6 @@
+.tony-option {
+ display: none; 
+}
+.tony-option.current {
+ display: initial; // special css value for default or inherited
+}
