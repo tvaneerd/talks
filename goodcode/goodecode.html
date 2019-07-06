@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Good Code</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Hana -->
+		<link rel="stylesheet" href="tony.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>Good Code</h3>
+					<ul>
+						<li><span class="tony-option tony-key-r" id="readable">Readable</span></li>
+						<li><span class="tony-option tony-key-m">Maintainable</span></li>
+						<li><span class="tony-option tony-key-s">SOLID</span></li>
+						<li><span class="tony-option tony-key-70">Foo</span></li>
+						<li><span class="tony-option tony-key-66">Bar</span></li>
+					</ul>
+				</section>
+				<section>Slide 2</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<!-- Hana -->
+		<script src="jquery-3.4.1.min.js"></script>
+		<!-- script src="tony.js"></script -->
+
+		<script>
+
+			// Hana
+			function tony_select(value) {
+			 console.log(value)
+			 if ($("section:not(.stack).current .tony-option.tony-"+value).length == 0) { console.log("nothing"); return; }
+
+			 $("section:not(.stack).current .tony-option.current").removeClass("current");
+			 $("section:not(.stack).current .tony-option.tony-"+value).addClass("current");
+			}
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				// Hana
+				fragmentInURL: true,
+				hash: true, 
+				history: true,
+				help: false,
+
+				// Hana
+				keyboard: {
+                66: function(event) {
+                    tony_select("key-66");
+                },
+                70: function(event) {
+                    tony_select("key-70");
+                },
+                82: function(event) {
+                    tony_select("key-r");
+                },
+                83: function(event) {
+                    tony_select("key-s");
+                },
+                77: function(event) {
+                    tony_select("key-m");
+                }},
+
+
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+
+		<script>
+			// Hana!
+			function fragment_shown(name, func) {
+			    Reveal.addEventListener( 'fragmentshown', function( event ) {
+			        
+			        var mine = false;
+			        event.fragments.forEach(function(f){
+			            var value = f.getAttribute("id");
+			            if (value == name) {
+			                mine = true;
+			            }
+			        })
+			        
+			        if (mine) {
+			            func();
+			        }
+			        
+			        
+			    } );
+			}
+		</script>
+	</body>
+</html>
